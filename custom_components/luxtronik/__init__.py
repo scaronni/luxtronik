@@ -116,10 +116,10 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) ->
     if config_entry.version == 3:
         # Ensure sensor prefix:
         if CONF_HA_SENSOR_PREFIX not in config_entry.data and (
-            DOMAIN == "luxtronik2"
-            or len(hass.config_entries.async_entries("luxtronik2")) > 0
+            DOMAIN == "luxtronik"
+            or len(hass.config_entries.async_entries("luxtronik")) > 0
         ):
-            new_data = {**config_entry.data, CONF_HA_SENSOR_PREFIX: "luxtronik2"}
+            new_data = {**config_entry.data, CONF_HA_SENSOR_PREFIX: "luxtronik"}
         else:
             new_data = {**config_entry.data}
         config_entry.version = 4
