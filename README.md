@@ -134,7 +134,7 @@ Take these files as a reference to figure out which IDs to use:
 In order to change parameters on the Luxtronik controller, you can use the following service:
 
 ```yaml
-Domain: luxtronik2
+Domain: luxtronik
 Service: write
 Service Data: {"parameter": "ID_Ba_Hz_akt", "value": "Automatic"}
 ```

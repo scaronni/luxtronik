@@ -17,7 +17,7 @@ from homeassistant.helpers.typing import StateType
 # endregion Imports
 
 # region Constants Main
-DOMAIN: Final = "luxtronik2"
+DOMAIN: Final = "luxtronik"
 NICKNAME_PREFIX: Final = "Home Assistant"
 
 LOGGER: Final[logging.Logger] = logging.getLogger(__package__)
