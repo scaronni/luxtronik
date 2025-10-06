@@ -97,7 +97,7 @@ class LuxtronikFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         """Handle a flow initiated by the user."""
         try:
             LOGGER.info("Starting async_step_user")
-            await self._async_migrate_data_from_custom_component_luxtronik2()
+            await self._async_migrate_data_from_custom_component_luxtronik()
 
             LOGGER.info("Starting discovery of Luxtronik devices on network")
             device_list = await self._discover_devices()
@@ -224,17 +224,17 @@ class LuxtronikFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         return self._create_entry(config, coordinator)
 
-    async def _async_migrate_data_from_custom_component_luxtronik2(self):
+    async def _async_migrate_data_from_custom_component_luxtronik(self):
         """
-        Migrate custom_components/luxtronik2 to components/luxtronik.
+        Migrate custom_components/luxtronik to components/luxtronik.
 
             - If serial number matches
-            1. Set CONF_HA_SENSOR_PREFIX = "luxtronik2"
-            2. Disable custom_components/luxtronik2
+            1. Set CONF_HA_SENSOR_PREFIX = "luxtronik"
+            2. Disable custom_components/luxtronik
         """
-        # Check if custom_component_luxtronik2 exists:
+        # Check if custom_component_luxtronik exists:
         try:
-            for legacy_entry in self.hass.config_entries.async_entries("luxtronik2"):
+            for legacy_entry in self.hass.config_entries.async_entries("luxtronik"):
                 if (
                     CONF_HOST not in legacy_entry.data
                     or CONF_PORT not in legacy_entry.data
@@ -255,7 +255,7 @@ class LuxtronikFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                         await self.hass.config_entries.async_reload(
                             legacy_entry.entry_id
                         )
-                        self.context["data"][CONF_HA_SENSOR_PREFIX] = "luxtronik2"
+                        self.context["data"][CONF_HA_SENSOR_PREFIX] = "luxtronik"
                         if (
                             hasattr(legacy_entry, "data")
                             and CONF_HA_SENSOR_INDOOR_TEMPERATURE in legacy_entry.data
@@ -268,7 +268,7 @@ class LuxtronikFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                     continue
         except Exception as err:
             LOGGER.error(
-                "Could not handle config_flow._async_migrate_data_from_custom_component_luxtronik2",
+                "Could not handle config_flow._async_migrate_data_from_custom_component_luxtronik",
                 exc_info=err,
             )
 

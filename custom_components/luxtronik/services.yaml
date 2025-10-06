@@ -5,7 +5,7 @@ write:
 
     Example usage in YAML:
 
-      service: luxtronik2.write
+      service: luxtronik.write
       data:
         parameter: "ID_Ba_Bw_akt"
         value: "Automatic"
