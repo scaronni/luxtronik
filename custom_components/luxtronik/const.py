@@ -17,7 +17,7 @@ from homeassistant.helpers.typing import StateType
 # endregion Imports
 
 # region Constants Main
-DOMAIN: Final = "luxtronik2"
+DOMAIN: Final = "luxtronik"
 CONFIG_ENTRY_VERSION: Final = 8
 NICKNAME_PREFIX: Final = "Home Assistant"
 
