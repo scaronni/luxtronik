@@ -142,10 +142,10 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) ->
 
         elif current_version == 3:
             if CONF_HA_SENSOR_PREFIX not in new_data and (
-                DOMAIN == "luxtronik2"
-                or len(hass.config_entries.async_entries("luxtronik2")) > 0
+                DOMAIN == "luxtronik"
+                or len(hass.config_entries.async_entries("luxtronik")) > 0
             ):
-                new_data[CONF_HA_SENSOR_PREFIX] = "luxtronik2"
+                new_data[CONF_HA_SENSOR_PREFIX] = "luxtronik"
             await _async_update_config_entry(hass, config_entry, new_data, 4)
             current_version = 4
 
